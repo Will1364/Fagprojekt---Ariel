@@ -30,6 +30,9 @@ plt.figure()
 for i in range(0,len(filenames)):
     Wavelength = np.loadtxt(filenames[i])[:, 0] # Datapunkternes bølgelængder læses fra filen
     Transmittance = np.loadtxt(filenames[i])[:, 1]*10**6 # Værdien af datapunkterne aflæses
+    error = np.loadtxt(filenames[i])[:, 2]*10**6
+    
+    plt.errorbar(Wavelength, Transmittance, yerr=error)
     plt.plot(Wavelength, Transmittance, colours[i], label = labels[i]) # Datasæt "i" plottes
 
 plt.title("Transmittance spektrum CO2 baseret atmosfærer") # plottets titel defineres
