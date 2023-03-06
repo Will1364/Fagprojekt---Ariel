@@ -2,14 +2,14 @@
 """
 Created on Mon Mar  6 09:54:13 2023
 
-@author: willi
+@author: William
 """
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-
-Wavelength = np.loadtxt("psg_rad_1b.txt")[:, 0]
-
+###################################################################################################################################
+# Formålet med denne funktion er at binne et datasæt og derved reducere støj
+# I funktionen insættes listen med målepunkternes bølgelængder (x-koordinaterne), samt målepunkternes y-koordinat og 
 
 def binData(Wavelength, Signal, Resolution):
     
@@ -35,17 +35,24 @@ def binData(Wavelength, Signal, Resolution):
     
     # Det næste loop bruges til at indele datasættet i de binintervaller som blev defineret i første loop
     # Gennemsnittet af de datapunkter som falder inden for hvert bin udregnes, og disse værdier gemmes som vores nye datasæt
+    Wavelength = np.array(Wavelength)
+    Signal = np.array(Signal)
     
-    for i in range(max(Xbinned)) # Dette loop binner datasættet et bin af gangen
-        currentBin = Wavelength[Xbinned == i+1] # Bølgelængder der ligger inden for pågældende bin gemmes i liste
+    # Det næste loop bruges til at indele datasættet i de binintervaller som blev defineret i første loop
+    # Gennemsnittet af de datapunkter som falder inden for hvert bin udregnes, og disse værdier gemmes som vores nye datasæ
+    
+    for i in range(max(Xbinned)): # Dette loop binner datasættet et bin af gangen
+        currentBin = np.zeros(len(Wavelength))
+        currentBin[Xbinned == i+1] = Wavelength[Xbinned == i+1] # Bølgelængder der ligger inden for pågældende bin gemmes i liste
+       
         binnedDatapoints = Signal[Wavelength == currentBin] # Signalet tilhørende binnets  bølgelængde interval gemmes i liste
         
+        
         dataPoint = np.mean(binnedDatapoints) # gennemsnittet af signaler i pågældende bin udregnes og gemmes som nyt datapunkt
-        binnedWavelength = np.mean(currentBin) # midten af binnet gemmes som bølgelængden tilhørende nyt datapunkt 
+        binnedWavelength = np.mean(currentBin[currentBin > 0]) # midten af binnet gemmes som bølgelængden tilhørende nyt datapunkt 
         
         binnedDatapoint.append(dataPoint)
         binnedWavelengths.append(binnedWavelength)
     return binnedDatapoint, binnedWavelengths
-
 
 
