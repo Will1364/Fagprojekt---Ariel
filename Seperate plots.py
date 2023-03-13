@@ -7,6 +7,9 @@ Created on Mon Feb 27 14:59:25 2023
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+from binData import binData
+from Chi_squared import chiSquared
+from BIC_funktion import BIC
 
 # Her beskrives de farver som bruges i plottet
 colours = ["r.","b.","g.","y.","c.","m.","k."]
@@ -33,9 +36,18 @@ for i in range(0,len(filenames)):
     error = np.loadtxt(filenames[i])[:, 2]*10**6
     plt.figure()
     
+    binnedData = binData(Wavelength, Transmittance, error, 8)
+    
     plt.errorbar(Wavelength, Transmittance, yerr=error, label='both limits (default)')
     plt.plot(Wavelength, Transmittance, colours[i], label = labels[i]) # Datasæt "i" plottes
     plt.title("Transmittance spektrum " + labels[i]) # plottets titel defineres
     plt.xlabel("wavelength [um]")                       # x-aksens titel defineres
     plt.ylabel("Transmittance [ppm]")                         # y-aksens titel defineres 
     plt.show
+    
+    chi = chiSquared(Signal, Transmittance, flatModel, error)
+    deltaBIC = BIC(chi[0],chi[1],len(Signal))
+    
+    print("dBIC for " + labels[i] + "er" + str(deltaBIC))
+    
+    
