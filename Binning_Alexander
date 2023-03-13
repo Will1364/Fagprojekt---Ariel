@@ -1,0 +1,18 @@
+def weighted_avg(x, y, yerr, binning_factor):
+    y_avg_arr = []
+    y_avg_err_arr = []
+    x_avg_arr = []
+
+    for i in range(0, ceil(len(y) / binning_factor)):
+        reciprocal_squares = 1 / (yerr[i * binning_factor:(i + 1) * binning_factor] ** 2)
+        y_avg = np.sum(y[i * binning_factor:(i + 1) * binning_factor] * reciprocal_squares) / np.sum(
+            reciprocal_squares)
+
+        y_avg_err = 1 / np.sqrt(np.sum(reciprocal_squares))
+        y_avg_arr.append(y_avg)
+        y_avg_err_arr.append(y_avg_err)
+
+        x_avg_arr.append(np.mean(x[i * binning_factor:(i + 1) * binning_factor]))
+
+    return x_avg_arr, y_avg_arr, y_avg_err_arr
+
