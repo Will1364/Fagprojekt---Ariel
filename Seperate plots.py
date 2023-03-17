@@ -22,14 +22,14 @@ planets = ["Trappist 1b", "Trappist 1c", "Trappist 1e"]
 
 # I nedestående loop plottes hvert datasæt et efter et
 
-for i in range(0,len(filenames)):
+for i in range(0,len(planets)):
     Wavelength_t = np.loadtxt("psg_" + planets[i] + "_c")[:, 0] # Datapunkternes bølgelængder læses fra filen
     Spectrum = np.loadtxt("psg_" + planets[i] + "_c")[:, 1]*10**6 # Værdien af datapunkterne aflæses
     error = np.loadtxt("psg_" + planets[i] + "_c")[:, 2]*10**6
     flatModel = np.loadtxt("psg_" + planets[i] + "_f")[:, 1]*10**6
 
     
-    Signal = SignalSimulator(Spectrum, error)
+    Signal = SignalSimulater(Spectrum, error)
     chi = chiSquared(Signal, Spectrum, flatModel, error)
     deltaBIC = BIC(chi[0],chi[1],len(Signal))
     
