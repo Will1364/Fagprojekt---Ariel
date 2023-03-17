@@ -1,4 +1,4 @@
-# Author CVL
+@author: Christina Vejby Larsen
 # DeltaBIC funktion
 # Input: chi^2-fordelingen for henholdsvis den fittede model og for 
 # en flad linje og n (antallet af datapunkter).
