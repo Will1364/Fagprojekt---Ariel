@@ -13,7 +13,7 @@ from BIC_funktion import BIC
 from SignalSim import SignalSimulater
 
 # Her beskrives de farver som bruges i plottet
-colours = ["r","b","g","y","c","m","k"]
+colours = ["r","y","m","k"]
 
 # Her definerer vi en liste med navne på hvert datasæt til vores plot
 planets = ["trappist1b", "trappist1c", "trappist1e"]
