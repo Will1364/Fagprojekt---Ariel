@@ -29,7 +29,6 @@ def SignalSimulater(Spectrum, Noise):
     
     for i in range(0, n):
         RND = np.random.normal(0, Noise[i],1)   # Generate Random nomber (RND) from norm dist with s = noise
-        print(RND)
         RNDvector = np.append(RNDvector,RND)    # Create vector from RND
     
     
