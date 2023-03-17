@@ -9,7 +9,7 @@ import numpy as np
 def BIC(chi_anden_m,chi_anden_f,n):
     k = 20
     BIC_m = chi_anden_m + k*math.log(n)
-    BIC_f = chi_anden_f + k*marth.log(n)
+    BIC_f = chi_anden_f + k*math.log(n)
     DeltaBIC = chi_anden_m - chi_anden_f
     return DeltaBIC
 
