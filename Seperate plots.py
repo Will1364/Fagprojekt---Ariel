@@ -14,16 +14,10 @@ from BIC_funktion import BIC
 # Her beskrives de farver som bruges i plottet
 colours = ["r.","b.","g.","y.","c.","m.","k."]
 
-
-###############################################################################
-#CO2 baserede atmosfærer
-###############################################################################
-
 # Her Skriver vi en liste over filnavne
 filenames = ["psg_rad_1b.txt","psg_rad_1c.txt", "psg_rad_1e.txt"]
 
 # Her definerer vi en liste med navne på hvert datasæt til vores plot
-#labels = ["1 bar H20 (N=50)", "1 bar H20 cloudy (N=90)", "10 bar CO2 (N=30)", "10 bar Venus (N=120)"]
 labels = ["Trappist 1b", "Trappist 1c", "Trappist 1e"]
 
 
