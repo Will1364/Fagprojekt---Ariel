@@ -39,7 +39,7 @@ for i in range(0,len(planets)):
     
     #binnedData = binData(Wavelength, Signal, error, 8)
     
-    plt.figure(1)
+    plt.figure()
     plt.errorbar(Wavelength, Signal, yerr=error, label='both limits (default)')
     plt.plot(Wavelength, Signal, "bo", label = planets[i]) # Datasæt "i" plottes
     plt.plot(Wavelength, Spectrum, colours[i])
