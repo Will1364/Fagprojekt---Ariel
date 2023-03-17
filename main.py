@@ -23,7 +23,7 @@ planets = ["trappist1b", "trappist1c", "trappist1e"]
 # I nedestående loop plottes hvert datasæt et efter et
 
 for i in range(0,len(planets)):
-    Wavelength_t = np.loadtxt("psg_" + planets[i] + "_c.txt")[:, 0] # Datapunkternes bølgelængder læses fra filen
+    Wavelength = np.loadtxt("psg_" + planets[i] + "_c.txt")[:, 0] # Datapunkternes bølgelængder læses fra filen
     Spectrum = np.loadtxt("psg_" + planets[i] + "_c.txt")[:, 1]*10**6 # Værdien af datapunkterne aflæses
     error = np.loadtxt("psg_" + planets[i] + "_c.txt")[:, 2]*10**6
     flatModel = np.loadtxt("psg_" + planets[i] + "_f.txt")[:, 1]*10**6
@@ -35,7 +35,7 @@ for i in range(0,len(planets)):
     
     
    
-    print("dBIC for " + labels[i] + "er" + str(deltaBIC))
+    print("dBIC for " + planets[i] + "er" + str(deltaBIC))
     
     #binnedData = binData(Wavelength, Signal, error, 8)
     
