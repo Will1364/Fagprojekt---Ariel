@@ -16,9 +16,9 @@ import matplotlib.pyplot as plt
 # The function for adding randomrumbers to the data points
 
 # define array of data points
-Wavelength = np.loadtxt("TRAPPIST1b.txt")[:, 0]
-Spectrum = np.loadtxt("TRAPPIST1b.txt")[:, 1]*10**6
-Noise = np.loadtxt("TRAPPIST1b.txt")[:, 2]*10**6
+#Wavelength = np.loadtxt(filename)[:, 0]
+#Spectrum = np.loadtxt(filename)[:, 1]*10**6
+#Noise = np.loadtxt(filename)[:, 2]*10**6
 
 
 def SignalSimulater(Spectrum, Noise):
