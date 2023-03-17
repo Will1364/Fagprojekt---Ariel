@@ -10,38 +10,43 @@ import matplotlib.pyplot as plt
 from binData import binData
 from Chi_squared import chiSquared
 from BIC_funktion import BIC
+from SignalSim import SignalSimulater
 
 # Her beskrives de farver som bruges i plottet
-colours = ["r.","b.","g.","y.","c.","m.","k."]
-
-# Her Skriver vi en liste over filnavne
-filenames = ["psg_rad_1b.txt","psg_rad_1c.txt", "psg_rad_1e.txt"]
+colours = ["r","b","g","y","c","m","k"]
 
 # Her definerer vi en liste med navne på hvert datasæt til vores plot
-labels = ["Trappist 1b", "Trappist 1c", "Trappist 1e"]
+planets = ["Trappist 1b", "Trappist 1c", "Trappist 1e"]
 
 
 
 # I nedestående loop plottes hvert datasæt et efter et
 
 for i in range(0,len(filenames)):
-    Wavelength = np.loadtxt(filenames[i])[:, 0] # Datapunkternes bølgelængder læses fra filen
-    Transmittance = np.loadtxt(filenames[i])[:, 1]*10**6 # Værdien af datapunkterne aflæses
-    error = np.loadtxt(filenames[i])[:, 2]*10**6
-    plt.figure()
+    Wavelength_t = np.loadtxt("psg_" + planets[i] + "_c")[:, 0] # Datapunkternes bølgelængder læses fra filen
+    Spectrum = np.loadtxt("psg_" + planets[i] + "_c")[:, 1]*10**6 # Værdien af datapunkterne aflæses
+    error = np.loadtxt("psg_" + planets[i] + "_c")[:, 2]*10**6
+    flatModel = np.loadtxt("psg_" + planets[i] + "_f")[:, 1]*10**6
+
     
-    binnedData = binData(Wavelength, Transmittance, error, 8)
+    Signal = SignalSimulator(Spectrum, error)
+    chi = chiSquared(Signal, Spectrum, flatModel, error)
+    deltaBIC = BIC(chi[0],chi[1],len(Signal))
     
-    plt.errorbar(Wavelength, Transmittance, yerr=error, label='both limits (default)')
-    plt.plot(Wavelength, Transmittance, colours[i], label = labels[i]) # Datasæt "i" plottes
-    plt.title("Transmittance spektrum " + labels[i]) # plottets titel defineres
+    
+   
+    print("dBIC for " + labels[i] + "er" + str(deltaBIC))
+    
+    #binnedData = binData(Wavelength, Signal, error, 8)
+    
+    plt.figure(1)
+    plt.errorbar(Wavelength, Signal, yerr=error, label='both limits (default)')
+    plt.plot(Wavelength, Signal, "bo", label = planets[i]) # Datasæt "i" plottes
+    plt.plot(Wavelength, Spectrum, color[i])
+    plt.title("Transmittance spektrum " + planets[i]) # plottets titel defineres
     plt.xlabel("wavelength [um]")                       # x-aksens titel defineres
     plt.ylabel("Transmittance [ppm]")                         # y-aksens titel defineres 
     plt.show
-    
-    chi = chiSquared(Signal, Transmittance, flatModel, error)
-    deltaBIC = BIC(chi[0],chi[1],len(Signal))
-    
-    print("dBIC for " + labels[i] + "er" + str(deltaBIC))
+   
     
     
