@@ -4,6 +4,10 @@ Created on Mon Feb 20 13:54:18 2023
 
 @author: William Hedegaard Langvad
 """
+"""
+Formålet med dette script er at kunen sammenligne flere simuleringer i et samlet plot.
+Vil man eksempelvis vise spektret på både Trappist 1c og trappist 1e i et plot kan man bruge dette script.
+"""
 import numpy as np
 import math
 import matplotlib.pyplot as plt
