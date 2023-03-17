@@ -35,7 +35,7 @@ for i in range(0,len(planets)):
     
     
    
-    print("dBIC for " + planets[i] + "er" + str(deltaBIC))
+    print("dBIC for " + planets[i] + " er " + str(deltaBIC))
     
     #binnedData = binData(Wavelength, Signal, error, 8)
     
