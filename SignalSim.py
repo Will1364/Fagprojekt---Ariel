@@ -36,9 +36,9 @@ def SignalSimulater(Spectrum, Noise):
     Signal = Spectrum + RNDvector       #Calculate Signal by adding random numbers to spectrum
     return Signal
 
-Signal = SignalSimulater(Spectrum, Noise)
+#Signal = SignalSimulater(Spectrum, Noise)
 
-plt.figure()
-plt.plot(Wavelength, Signal, "bo")
-plt.plot(Wavelength, Spectrum, "r")
-plt.show()
+#plt.figure()
+#plt.plot(Wavelength, Signal, "bo")
+#plt.plot(Wavelength, Spectrum, "r")
+#plt.show()
