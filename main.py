@@ -33,6 +33,14 @@ for i in range(0,len(planets)):
     chi = chiSquared(Signal, Spectrum, flatModel, error)
     deltaBIC = BIC(chi[0],chi[1],len(Signal))
     
+    #avgBIC = np.array([])
+    #for j in range(1000):
+    #    Signal = SignalSimulater(Spectrum, error)
+    #    chi = chiSquared(Signal, Spectrum, flatModel, error)
+    #    deltaBIC = BIC(chi[0],chi[1],len(Signal))
+    #    avgBIC = np.append(avgBIC,deltaBIC) 
+    #deltaBIC = np.mean(avgBIC)
+    
     
    
     print("dBIC for " + planets[i] + " er " + str(deltaBIC))
