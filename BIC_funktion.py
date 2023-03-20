@@ -10,6 +10,6 @@ def BIC(chi_anden_m,chi_anden_f,n):
     k = 20
     BIC_m = chi_anden_m + k*math.log(n)
     BIC_f = chi_anden_f + k*math.log(n)
-    DeltaBIC = chi_anden_m - chi_anden_f
+    DeltaBIC = BIC_m - BIC_f
     return DeltaBIC
 
