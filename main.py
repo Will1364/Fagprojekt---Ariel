@@ -29,32 +29,44 @@ for i in range(0,len(planets)):
     flatModel = np.loadtxt("psg_" + planets[i] + "_f.txt")[:, 1]*10**6
 
     
-    Signal = SignalSimulater(Spectrum, error)               #Dette stykke kode kan udregne en dBIC værdi for 1 simulering
-    chi = chiSquared(Signal, Spectrum, flatModel, error)
-    deltaBIC = BIC(chi[0],chi[1],len(Signal))
-    
-    #avgBIC = np.array([])                                 #Dette stykke kode kan udregne en gennemsnitlig dBIC-værdi for 1000 simuleringer
-    #for j in range(1000):
-    #    Signal = SignalSimulater(Spectrum, error)
-    #    chi = chiSquared(Signal, Spectrum, flatModel, error)
-    #    deltaBIC = BIC(chi[0],chi[1],len(Signal))
-    #    avgBIC = np.append(avgBIC,deltaBIC) 
-    #deltaBIC = np.mean(avgBIC)
+    avgBIC = np.array([])                                 #Dette stykke kode kan udregne en gennemsnitlig dBIC-værdi for 1000 simuleringer
+    for j in range(1000):
+        Signal = SignalSimulater(Spectrum, error)
+        chi = chiSquared(Signal, Spectrum, flatModel, error)
+        deltaBIC = BIC(chi[0],chi[1],len(Signal))
+        avgBIC = np.append(avgBIC,deltaBIC) 
+    deltaBIC = np.mean(avgBIC)
     
     
    
     print("dBIC for " + planets[i] + " er " + str(deltaBIC))
     
-    #binnedData = binData(Wavelength, Signal, error, 8)
+    
+    
+    binnedData = binData(Wavelength, Signal, error, 8)
+    
+    diff = max(Spectrum)-min(Spectrum)
+    
     
     plt.figure()
     plt.errorbar(Wavelength, Signal, yerr=error, label='both limits (default)')
-    plt.plot(Wavelength, Signal, "bo", label = planets[i]) # Datasæt "i" plottes
+    plt.plot(Wavelength, Signal, "b.", label = planets[i]) # Datasæt "i" plottes
     plt.plot(Wavelength, Spectrum, colours[i])
     plt.title("Transmittance spektrum " + planets[i]) # plottets titel defineres
-    plt.xlabel("wavelength [um]")                       # x-aksens titel defineres
-    plt.ylabel("Transmittance [ppm]")                         # y-aksens titel defineres 
+    plt.xlabel("wavelength [um]")                     # x-aksens titel defineres
+    plt.ylabel("Transmittance [ppm]")                 # y-aksens titel defineres 
+    plt.ylim(np.mean(Spectrum)-diff,np.mean(Spectrum)+diff)
     plt.show
-   
+    
+    plt.figure()
+    plt.errorbar(binnedData[1], binnedData[0],fmt=' ', yerr=binnedData[2], label='both limits (default)')
+    plt.plot(binnedData[1], binnedData[0], "b.", label = planets[i]) # Datasæt "i" plottes
+    plt.plot(Wavelength, Spectrum, colours[i])
+    plt.title("Transmittance spektrum " + planets[i]) # plottets titel defineres
+    plt.xlabel("wavelength [um]")                     # x-aksens titel defineres
+    plt.ylabel("Transmittance [ppm]")                 # y-aksens titel defineres 
+    plt.ylim(np.mean(Spectrum)-diff,np.mean(Spectrum)+diff)
+    plt.show
+    
     
     
