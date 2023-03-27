@@ -2,7 +2,7 @@
 """
 Created on Mon Feb 27 14:59:25 2023
 
-@author: willi
+@author: William Hedegaard Langvad
 """
 import numpy as np
 import math
@@ -62,6 +62,7 @@ for i in range(0,len(planets)):
     plt.errorbar(binnedData[1], binnedData[0],fmt=' ', yerr=binnedData[2], label='both limits (default)')
     plt.plot(binnedData[1], binnedData[0], "b.", label = planets[i]) # Datasæt "i" plottes
     plt.plot(Wavelength, Spectrum, colours[i])
+    plt.plot(Wavelength, flatModel,"r")
     plt.title("Transmittance spektrum " + planets[i]) # plottets titel defineres
     plt.xlabel("wavelength [um]")                     # x-aksens titel defineres
     plt.ylabel("Transmittance [ppm]")                 # y-aksens titel defineres 
