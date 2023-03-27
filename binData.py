@@ -29,9 +29,10 @@ def binData(Wavelength, Signal, Resolution):
             
     Xbinned = np.digitize(Wavelength, bins, right=False) #listen med bølgelængder opdeles inden for bingrænser
     
-    binnedDatapoint = []
-    binnedWavelengths = []
     
+    y_avg = np.array([])
+    x_avg = np.array([])
+    y_avg_error = np.array([])
     
     # Det næste loop bruges til at indele datasættet i de binintervaller som blev defineret i første loop
     # Gennemsnittet af de datapunkter som falder inden for hvert bin udregnes, og disse værdier gemmes som vores nye datasæt
@@ -45,14 +46,16 @@ def binData(Wavelength, Signal, Resolution):
         currentBin = np.zeros(len(Wavelength))
         currentBin[Xbinned == i+1] = Wavelength[Xbinned == i+1] # Bølgelængder der ligger inden for pågældende bin gemmes i liste
        
-        binnedDatapoints = Signal[Wavelength == currentBin] # Signalet tilhørende binnets  bølgelængde interval gemmes i liste
+        RS = 1/(Noise[Wavelength == currentBin]**2)
+       
+        binnedDatapoints = np.sum(Signal[Wavelength == currentBin]*RS)/np.sum(RS) # Signalet tilhørende binnets  bølgelængde interval gemmes i liste
         
         
-        dataPoint = np.mean(binnedDatapoints) # gennemsnittet af signaler i pågældende bin udregnes og gemmes som nyt datapunkt
-        binnedWavelength = np.mean(currentBin[currentBin > 0]) # midten af binnet gemmes som bølgelængden tilhørende nyt datapunkt 
+        y_avg = np.append(y_avg,binnedDatapoints) # gennemsnittet af signaler i pågældende bin udregnes og gemmes som nyt datapunkt
+        x_avg = np.append(x_avg,np.mean(currentBin[currentBin > 0])) # midten af binnet gemmes som bølgelængden tilhørende nyt datapunkt 
+        y_avg_error = np.append(y_avg_error,1/np.sqrt(np.sum(RS)))
         
-        binnedDatapoint.append(dataPoint)
-        binnedWavelengths.append(binnedWavelength)
-    return binnedDatapoint, binnedWavelengths
+    return y_avg, x_avg, y_avg_error
+
 
 
