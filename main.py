@@ -19,14 +19,15 @@ colours = ["r","y","m","k"]
 planets = ["trappist1b", "trappist1c", "trappist1e"]
 
 
-
-# I nedestående loop plottes hvert datasæt et efter et
-
 for i in range(0,len(planets)):
     Wavelength = np.loadtxt("psg_" + planets[i] + "_c.txt")[:, 0] # Datapunkternes bølgelængder læses fra filen
     Spectrum = np.loadtxt("psg_" + planets[i] + "_c.txt")[:, 1]*10**6 # Værdien af datapunkterne aflæses
     error = np.loadtxt("psg_" + planets[i] + "_c.txt")[:, 2]*10**6
     flatModel = np.loadtxt("psg_" + planets[i] + "_f.txt")[:, 1]*10**6
+
+    
+    diff = np.mean(Spectrum)-np.mean(flatModel)
+    flatModel  = flatModel+diff
 
     
     avgBIC = np.array([])                                 #Dette stykke kode kan udregne en gennemsnitlig dBIC-værdi for 1000 simuleringer
