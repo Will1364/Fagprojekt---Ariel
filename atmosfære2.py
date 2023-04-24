@@ -98,14 +98,14 @@ for i in range(0, 98):
 
 # mangler at sætte den til 50 steps, så den kun har 50 forskellige værdier
 
-plt.plot(P, range(0, 145091))
+plt.plot(P, range(0, 100))
 plt.xlabel("Pressure [Pa]")
 plt.ylabel("Height")
 plt.title("Atmospheric Pressure vs Height")
 plt.show()
 
 
-plt.plot(rho, range(0, 145091))
+plt.plot(rho, range(0, 100))
 plt.xlabel('Density (kg/m^3)')
 plt.ylabel('Height (m)')
 plt.title('Density of an Isothermal CO2 Atmosphere')
