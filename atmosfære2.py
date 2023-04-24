@@ -68,20 +68,17 @@ n_steps = 51
 P = []
 rho = []
 h = 0.0
+# Initialize arrays to store pressure and density
+P = np.zeros(100)
+rho = np.zeros(100)
+h = np.arange(10**3,10**5,1000)
+N_mol = np.zeros(100)
+P[0] = P0
 
-for i in range(0, 150000):
-    if i == 0:
-        P[i] = P0
-        P[i+1] = P[i] * np.exp((-g * (i))/(R_s*T))
-    else:
-        P[i] = P[i - 1] * np.exp((-g * (i-1))/(R_s * T))
-        P[i+1] = P[i] * np.exp((-g * i)/(R_s * T))
-        
-    h[i+1] = h + H * np.log(P[i]/P[i+1])
-    h = h[i+1]
-    
-    rho.append( rho_0 * np.exp((-g * M * i) / (R * T))) 
-    rho[i] = (N_A/M)*rho[i]
+for i in range(0, 98):
+    P[i+1] = P[i]/(np.exp(-(h[i]-h[i+1])/H))
+    rho[i] = rho_0 * np.exp((-g * M * i*1000) / (R * T))
+    N_mol[i] = (N_A/M)*rho[i]
     
 
 # mangler at sætte den til 50 steps, så den kun har 50 forskellige værdier
