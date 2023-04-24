@@ -120,3 +120,12 @@ pressure = np.logspace(3, -3, num=50)  # Pressure in Pa
 temperature = np.ones_like(pressure) * 273  # Temperature in K
 density = pressure / (1.38e-23 * temperature)  # Density in m^-3
 
+
+
+fileText = []
+for i in range(1,100):
+    fileText.append("<ATMOSPHERE-LAYER-" + str(i) + ">" + str(P[i]) + "," + str(T) + ",1")
+
+
+with open("psg_Trappist1b_template.txt", 'w') as file:
+    file.writelines('\n'.join(fileText))
