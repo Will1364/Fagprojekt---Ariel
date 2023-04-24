@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Mon Mar  6 09:54:13 2023
 
@@ -11,7 +10,7 @@ import matplotlib.pyplot as plt
 # Formålet med denne funktion er at binne et datasæt og derved reducere støj
 # I funktionen insættes listen med målepunkternes bølgelængder (x-koordinaterne), samt målepunkternes y-koordinat og 
 
-def binData(Wavelength, Signal, Resolution):
+def binData(Wavelength, Signal, Noise,Resolution):
     
     bins = [Wavelength[0]] # definerer en liste med grænser mellem bins
     
@@ -56,6 +55,4 @@ def binData(Wavelength, Signal, Resolution):
         y_avg_error = np.append(y_avg_error,1/np.sqrt(np.sum(RS)))
         
     return y_avg, x_avg, y_avg_error
-
-
 
