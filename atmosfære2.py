@@ -30,6 +30,18 @@ g_Te = 9.15
 g_Tf = 8.37
 g_Tg = 8.55
 
+# fixed radius of planet RP
+RJ = 6371*10**3
+
+RP_Tb = 1.116*RJ
+RP_Tc = 1.097*RJ
+RP_Td = 0.778*RJ
+RP_Te = 0.920*RJ
+RP_Tf = 1.045*RJ
+RP_Tg = 1-129*RJ
+
+RP = RP_Tb
+
 # Parameters for the atmosphere
 M = M_CO2
 T = 500
@@ -74,6 +86,9 @@ rho = np.zeros(100)
 h = np.arange(10**3,10**5,1000)
 N_mol = np.zeros(100)
 P[0] = P0
+
+g_l = g * ((h + RP)/RP)**2
+H = (kb*N_A*T) / (g_l*M)
 
 for i in range(0, 98):
     P[i+1] = P[i]/(np.exp(-(h[i]-h[i+1])/H))
