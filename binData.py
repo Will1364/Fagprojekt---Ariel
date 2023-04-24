@@ -15,7 +15,7 @@ def binData(Wavelength, Signal, Noise,Resolution):
     bins = [Wavelength[0]] # definerer en liste med grænser mellem bins
     
     
-    # Det første loop i koden bruges til at definerede kasser/bins som dataen skal sorteres efter
+    # Det første loop i koden bruges til at definere kasser/bins, som dataen skal sorteres efter
     # binbredden er defineret efter R=Lambda/dLambda, hvor lambda er bølgelængden og R er den valgte opløsning
     
     
@@ -33,17 +33,17 @@ def binData(Wavelength, Signal, Noise,Resolution):
     x_avg = np.array([])
     y_avg_error = np.array([])
     
-    # Det næste loop bruges til at indele datasættet i de binintervaller som blev defineret i første loop
-    # Gennemsnittet af de datapunkter som falder inden for hvert bin udregnes, og disse værdier gemmes som vores nye datasæt
+    # Det næste loop bruges til at indele datasættet i de binintervaller, som blev defineret i første loop
+    # Gennemsnittet af de datapunkter, som falder inden for hvert bin udregnes, og disse værdier gemmes som vores nye datasæt
     Wavelength = np.array(Wavelength)
     Signal = np.array(Signal)
     
-    # Det næste loop bruges til at indele datasættet i de binintervaller som blev defineret i første loop
-    # Gennemsnittet af de datapunkter som falder inden for hvert bin udregnes, og disse værdier gemmes som vores nye datasæ
+    # Det næste loop bruges til at indele datasættet i de binintervaller, som blev defineret i første loop
+    # Gennemsnittet af de datapunkter, som falder inden for hvert bin udregnes, og disse værdier gemmes som vores nye datasæt
     
     for i in range(max(Xbinned)): # Dette loop binner datasættet et bin af gangen
         currentBin = np.zeros(len(Wavelength))
-        currentBin[Xbinned == i+1] = Wavelength[Xbinned == i+1] # Bølgelængder der ligger inden for pågældende bin gemmes i liste
+        currentBin[Xbinned == i+1] = Wavelength[Xbinned == i+1] # Bølgelængder, der ligger inden for pågældende bin gemmes i liste
        
         RS = 1/(Noise[Wavelength == currentBin]**2)
        
