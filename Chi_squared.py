@@ -16,4 +16,4 @@ def chiSquared(Signal,Model,flatModel,Uncertainty):
     chi_f = sum(((Signal-flatModel)/Uncertainty)**2)   #chi i anden udregnes for den flade model
     SN = math.sqrt(sum(((Signal-flatModel)/Uncertainty)**2))
     
-    return chi_m, chi_f
+    return chi_m, chi_f, SN
