@@ -25,16 +25,20 @@ for i in range(0,len(planets)):
     error = np.loadtxt("psg_" + planets[i] + "_c.txt")[:, 2]*10**6
     flatModel = np.mean(Spectrum)
     
+    avgSN = np.array([])
     avgBIC = np.array([])                                 #Dette stykke kode kan udregne en gennemsnitlig dBIC-værdi for 1000 simuleringer
     for j in range(1000):
         Signal = SignalSimulater(Spectrum, error)
         chi = chiSquared(Signal, Spectrum, flatModel, error)
         deltaBIC = BIC(chi[0],chi[1],len(Signal))
         avgBIC = np.append(avgBIC,deltaBIC) 
+        avgSN = np.append(avgSN,chi[2])
+        
+    S2N = np.mean(avgSN)
     deltaBIC = np.mean(avgBIC)
     
     
-   
+    print("S/N for " + planets[i] + " er " + str(S2N))
     print("dBIC for " + planets[i] + " er " + str(deltaBIC))
     
     
