@@ -8,7 +8,7 @@ This is a temporary script file.
 
 import math
 
-def SignalToNoise(Signal,Model,flatModel,Uncertainty):
+def SN(Signal,Model,flatModel,Uncertainty):
     
     SN_m = sum((Signal-Model)/Uncertainty)       # S/N for spektret
     SN_f = sum((Signal-flatModel)/Uncertainty)   # S/N for den flade model
