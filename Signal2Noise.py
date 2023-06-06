@@ -8,8 +8,8 @@ This is a temporary script file.
 
 import math
 
-def SN(Signal,Model,flatModel,Uncertainty):
+def SN(Signal,Model,Uncertainty):
     
-    SN = sum((Signal-Model)/Uncertainty)       # S/N for spektret
+    SN = math.sqrt(sum(((Signal-Model)/Uncertainty)**2))       # S/N for spektret
     
     return SN
