@@ -11,6 +11,7 @@ from binData import binData
 from Chi_squared import chiSquared
 from BIC_funktion import BIC
 from SignalSim import SignalSimulater
+from Signal2Noise import SN
 
 # Her beskrives de farver som bruges i plottet
 colours = ["r","y","m","k"]
@@ -31,8 +32,9 @@ for i in range(0,len(planets)):
         Signal = SignalSimulater(Spectrum, error)
         chi = chiSquared(Signal, Spectrum, flatModel, error)
         deltaBIC = BIC(chi[0],chi[1],len(Signal))
+        SN = SN(Signal, Spectrum, error) 
         avgBIC = np.append(avgBIC,deltaBIC) 
-        avgSN = np.append(avgSN,chi[2])
+        avgSN = np.append(avgSN,SN)
         
     S2N = np.mean(avgSN)
     deltaBIC = np.mean(avgBIC)
