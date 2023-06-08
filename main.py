@@ -32,7 +32,7 @@ for i in range(0,len(planets)):
         Signal = SignalSimulater(Spectrum, error)
         chi = chiSquared(Signal, Spectrum, flatModel, error)
         deltaBIC = BIC(chi[0],chi[1],len(Signal))
-        SN = SN(Signal, Spectrum, error) 
+        SN = SN(flatModel, Spectrum, error) 
         avgBIC = np.append(avgBIC,deltaBIC) 
         avgSN = np.append(avgSN,SN)
         
