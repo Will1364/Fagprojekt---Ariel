@@ -49,8 +49,15 @@ for i in range(0,len(planets)):
     
     diff = max(Spectrum)-min(Spectrum)
     
+    plt.figure(0)
+    plt.plot(Wavelength, Spectrum, colours[i], label = planets[i]) # Datasæt "i" plottes
+    plt.title("Transmittance spektrum CO2 baseret atmosfærer") # plottets titel defineres
+    plt.xlabel("wavelength [um]")                       # x-aksens titel defineres
+    plt.ylabel("Transmittance [ppm]")                         # y-aksens titel defineres
+    plt.legend()                            # legend med titel 
+    plt.show
     
-    plt.figure()
+    plt.figure(i+1)
     plt.errorbar(Wavelength, Signal, yerr=error, label='both limits (default)')
     plt.plot(Wavelength, Signal, "b.", label = planets[i]) # Datasæt "i" plottes
     plt.plot(Wavelength, Spectrum, colours[i])
@@ -60,7 +67,7 @@ for i in range(0,len(planets)):
     plt.ylim(np.mean(Spectrum)-diff,np.mean(Spectrum)+diff)
     plt.show
     
-    plt.figure()
+    plt.figure(i+2)
     plt.errorbar(binnedData[1], binnedData[0],fmt=' ', yerr=binnedData[2], label='both limits (default)')
     plt.plot(binnedData[1], binnedData[0], "b.", label = planets[i]) # Datasæt "i" plottes
     plt.plot(Wavelength, Spectrum, colours[i])
