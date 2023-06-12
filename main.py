@@ -60,7 +60,7 @@ for i in range(0,len(planets)):
         plt.show
     
         plt.figure()
-        plt.errorbar(Wavelength, Signal, yerr=error, label='both limits (default)')
+        plt.errorbar(Wavelength, Signal,fmt=' ', yerr=error, label='both limits (default)')
         plt.plot(Wavelength, Signal, "b.", label = planets[i]) # Datasæt "i" plottes
         plt.plot(Wavelength, Spectrum, colours[i])
         plt.title("Transmittance spektrum " + planets[i] + " " + atmospheres[j]) # plottets titel defineres
