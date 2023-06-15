@@ -47,7 +47,7 @@ for i in range(0,len(planets)):
         plt.plot(Wavelength, Spectrum, colours[i], label = planets[i]) # Datasæt "i" plottes
         plt.title("Transmittance spektrum CO2 baseret atmosfærer") # plottets titel defineres
         plt.xlabel("wavelength [um]")                       # x-aksens titel defineres
-        plt.ylabel("Transmittance [ppm]")                         # y-aksens titel defineres
+        plt.ylabel("(Rp/Rs)" r'$^2$' "[ppm]")                         # y-aksens titel defineres
         plt.legend()                            # legend med titel 
         plt.show
     
@@ -57,7 +57,7 @@ for i in range(0,len(planets)):
         plt.plot(Wavelength, Spectrum, colours[i])
         plt.title("Transmittance spektrum " + planets[i] + " " + atmospheres[j]) # plottets titel defineres
         plt.xlabel("wavelength [um]")                     # x-aksens titel defineres
-        plt.ylabel("Transmittance [ppm]")                 # y-aksens titel defineres 
+        plt.ylabel("(Rp/Rs)" r'$^2$' "[ppm]")                 # y-aksens titel defineres 
         plt.ylim(np.mean(Spectrum)-diff,np.mean(Spectrum)+diff)
         plt.show
     
@@ -67,7 +67,7 @@ for i in range(0,len(planets)):
         plt.plot(Wavelength, Spectrum, colours[i])
         plt.title("Transmittance spektrum " + planets[i] + " " + atmospheres[j]) # plottets titel defineres
         plt.xlabel("wavelength [um]")                     # x-aksens titel defineres
-        plt.ylabel("Transmittance [ppm]")                 # y-aksens titel defineres 
+        plt.ylabel("(Rp/Rs)" r'$^2$' "[ppm]")                 # y-aksens titel defineres 
         plt.ylim(np.mean(Spectrum)-diff,np.mean(Spectrum)+diff)
         plt.show
     
